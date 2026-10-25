@@ -1,4 +1,4 @@
-"""Render a short walkthrough from the captured Chrome view of a public site."""
+"""Render a short walkthrough from captured Chrome views of public sites."""
 
 from __future__ import annotations
 
@@ -10,18 +10,22 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 ROOT = Path(__file__).resolve().parent
-SOURCE = ROOT / "real-site-frames" / "00-overview.png"
+SOURCES = {
+    "wiki": Image.open(ROOT / "real-site-frames" / "00-overview.jpg").convert("RGB"),
+    "ap": Image.open(ROOT / "real-site-frames" / "02-ap-news-37.jpg").convert("RGB"),
+}
 OUTPUT = ROOT / "veribar-real-site-walkthrough.mp4"
-IMAGE = Image.open(SOURCE).convert("RGB")
 FPS = 12
 WIDTH, HEIGHT = 1280, 720
 FRAMES = [
-    (5, None, "VERIBAR ON A REAL WEBSITE", "Wikipedia · Photosynthesis"),
-    (15, (0, 80, 2400, 1430), "REAL PAGE RESULT", "The Chrome extension scores text on a public Wikipedia article."),
-    (14, (360, 360, 2100, 1340), "TEXT SIGNAL", "GPT-2-like: 0% · A model estimate, not proof of authorship."),
-    (14, (850, 540, 2290, 1350), "MEDIA SIGNAL", "The image is marked NOT ANALYZED; media verification is not active."),
-    (12, (1800, 1150, 2400, 1462), "PAGE INDEX", "The extension reports one scanned text item on this page."),
-    (10, (0, 80, 2400, 1430), "REAL-SITE CHECK COMPLETE", "Source: en.wikipedia.org/wiki/Photosynthesis"),
+    (5, None, None, "VERIBAR ON REAL WEBSITES", "Wikipedia + AP News"),
+    (15, "wiki", (0, 80, 2400, 1430), "WIKIPEDIA RESULT", "The Chrome extension scores text on a public Wikipedia article."),
+    (14, "wiki", (360, 360, 2100, 1340), "TEXT SIGNAL", "GPT-2-like: 0% · A model estimate, not proof of authorship."),
+    (14, "wiki", (850, 540, 2290, 1350), "MEDIA SIGNAL", "The image is marked NOT ANALYZED; media verification is not active."),
+    (12, "wiki", (1800, 1150, 2400, 1454), "PAGE INDEX", "The extension reports one scanned text item on this page."),
+    (17, "ap", (0, 0, 2560, 1430), "AP NEWS / NONZERO RESULT", "37% GPT-2-like on a 40-word photo-area text block."),
+    (15, "ap", (1050, 590, 1800, 900), "EXPANDED DETECTOR RESULT", "37% is a model estimate; the full article body scored 0%."),
+    (10, "wiki", (0, 80, 2400, 1430), "REAL-SITE CHECK COMPLETE", "Sources: Wikipedia Photosynthesis + AP News data-center report."),
 ]
 
 
@@ -35,7 +39,7 @@ def ease(value: float) -> float:
 
 
 def draw_frame(section: int, progress: float) -> Image.Image:
-    duration, crop, heading, caption = FRAMES[section]
+    duration, source, crop, heading, caption = FRAMES[section]
     if crop is None:
         frame = Image.new("RGB", (WIDTH, HEIGHT), "#101010")
         draw = ImageDraw.Draw(frame)
@@ -45,6 +49,7 @@ def draw_frame(section: int, progress: float) -> Image.Image:
         draw.text((120, 595), "Captured in Chrome on 25 October 2026", font=font(25), fill="#a8a8a8")
         return frame
 
+    image = SOURCES[source]
     left, top, right, bottom = crop
     crop_width, crop_height = right - left, bottom - top
     # A restrained pan keeps the source capture readable without implying clicks.
@@ -56,9 +61,9 @@ def draw_frame(section: int, progress: float) -> Image.Image:
     y0 = top + crop_height * inset / 2 + shift_y
     x1 = right - crop_width * inset / 2 + shift_x
     y1 = bottom - crop_height * inset / 2 + shift_y
-    x0, x1 = max(0, x0), min(IMAGE.width, x1)
-    y0, y1 = max(0, y0), min(IMAGE.height, y1)
-    view = IMAGE.crop((round(x0), round(y0), round(x1), round(y1)))
+    x0, x1 = max(0, x0), min(image.width, x1)
+    y0, y1 = max(0, y0), min(image.height, y1)
+    view = image.crop((round(x0), round(y0), round(x1), round(y1)))
     scale = max(WIDTH / view.width, HEIGHT / view.height)
     view = view.resize((math.ceil(view.width * scale), math.ceil(view.height * scale)), Image.Resampling.LANCZOS)
     ox = (view.width - WIDTH) // 2
