@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "VeriBar",
+  "version": "0.1.0",
+  "description": "Shows a local GPT-2 text detector estimate beside web content.",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": ["http://127.0.0.1:8001/*"],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"],
+    "css": ["content.css"],
+    "run_at": "document_idle"
+  }],
+  "action": { "default_title": "VeriBar", "default_popup": "popup.html" }
+}

@@ -1,0 +1,6 @@
+fastapi>=0.110,<1
+uvicorn>=0.29,<1
+beautifulsoup4>=4.12,<5
+torch>=2.3,<3
+transformers>=4.44,<5
+

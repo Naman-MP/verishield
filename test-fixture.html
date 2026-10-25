@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>VeriBar test article</title>
+<link rel="stylesheet" href="verishield-extension/content.css">
+<article>
+  <h1>Local transit planning meeting</h1>
+  <p>Residents gathered at the town hall to discuss a proposed change to the local bus route. The committee presented maps, expected travel times, and a draft budget for the first year of operation.</p>
+  <p>Several speakers asked about wheelchair access and the location of evening stops. Staff said those details would be reviewed before the council votes at its next public meeting in November.</p>
+</article>
+<script>
+  // Browser-only smoke fixture. The real extension supplies these APIs.
+  window.chrome = {
+    runtime: {
+      onMessage: { addListener() {} },
+      sendMessage(_request, callback) {
+        callback({ ok: true, result: {
+          status: "analyzed", ai_probability: 84, model_confidence: 84,
+          word_count: 59, detail: "Test response"
+        } });
+      }
+    },
+    storage: {
+      onChanged: { addListener() {} },
+      local: { get(_defaults, callback) { callback({ veribarActive: true }); } }
+    }
+  };
+</script>
+<script src="verishield-extension/content.js"></script>

@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.cache/
+*.pyc
+.DS_Store
+/submission/veribar-source.zip
+

@@ -1,0 +1,31 @@
+.veribar-root, .veribar-hud {
+  all: initial;
+  box-sizing: border-box;
+  color: #0a0a0a;
+  background: #fff;
+  border: 1px solid #0a0a0a;
+  font: 11px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: .02em;
+  z-index: 2147483646;
+}
+.veribar-root *, .veribar-hud * { box-sizing: border-box; font: inherit; }
+.veribar-root { display: block; width: 100%; min-width: 220px; margin: 8px 0; }
+.veribar-toggle {
+  appearance: none; display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; width: 100%; padding: 7px 9px; border: 0; border-radius: 0;
+  background: #fff; color: #0a0a0a; cursor: pointer; text-align: left;
+}
+.veribar-toggle:focus-visible { outline: 2px solid #ff5500; outline-offset: 1px; }
+.veribar-brand { font-weight: 800 !important; letter-spacing: .08em; }
+.veribar-result { color: #ff5500; font-weight: 800 !important; text-align: right; }
+.veribar-meter { height: 3px; width: 100%; background: #0a0a0a; }
+.veribar-meter > span { display: block; height: 100%; width: 0; background: #ff5500; }
+.veribar-detail { display: none; border-top: 1px solid #0a0a0a; padding: 8px 9px; background: #fff; }
+.veribar-root[data-expanded="true"] .veribar-detail { display: block; }
+.veribar-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.veribar-cell { min-width: 0; overflow-wrap: anywhere; }
+.veribar-cell b { display: block; font-weight: 800 !important; }
+.veribar-note { margin-top: 8px; border-top: 1px solid #0a0a0a; padding-top: 7px; }
+.veribar-hud { position: fixed; right: 16px; bottom: 16px; padding: 9px 11px; max-width: 240px; }
+.veribar-hud strong { display: block; font-weight: 800 !important; }
+@media (max-width: 480px) { .veribar-hud { right: 8px; bottom: 8px; } }

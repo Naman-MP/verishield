@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Abstract workshop illustration">
+  <rect width="640" height="360" fill="#0a0a0a"/>
+  <path d="M0 290 320 70l320 220v70H0Z" fill="#ff5500"/>
+  <rect x="220" y="154" width="200" height="206" fill="#fff"/>
+  <path d="M250 190h140M250 225h140M250 260h140" stroke="#0a0a0a" stroke-width="14"/>
+  <circle cx="516" cy="81" r="43" fill="#ff5500"/>
+</svg>

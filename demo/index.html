@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VeriBar Demo Desk</title>
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f5f4f0; color: #0a0a0a; font-family: Georgia, serif; }
+    header { border-bottom: 3px solid #0a0a0a; background: #fff; }
+    .topline, .masthead, main { max-width: 980px; margin: auto; }
+    .topline { display: flex; justify-content: space-between; padding: 11px 24px; border-bottom: 1px solid #0a0a0a; font: 11px ui-monospace, monospace; letter-spacing: .08em; }
+    .masthead { display: flex; align-items: end; justify-content: space-between; gap: 24px; padding: 26px 24px; }
+    h1 { margin: 0; font-size: clamp(38px, 6vw, 68px); line-height: .95; letter-spacing: -.055em; }
+    .masthead p { max-width: 225px; margin: 0; font: 12px/1.5 ui-monospace, monospace; }
+    .accent { color: #ff5500; }
+    main { padding: 28px 24px 70px; }
+    .intro { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 24px; font: 12px ui-monospace, monospace; }
+    .intro span { border: 1px solid #0a0a0a; padding: 6px 8px; background: #fff; }
+    .feed { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(250px, 1fr); gap: 24px; }
+    article { background: #fff; border: 1px solid #0a0a0a; padding: 20px; }
+    article:nth-child(3) { grid-column: 1 / -1; }
+    .kicker { margin: 0 0 12px; color: #ff5500; font: bold 11px ui-monospace, monospace; letter-spacing: .1em; }
+    h2 { margin: 0 0 12px; font-size: clamp(24px, 3vw, 36px); line-height: 1.08; letter-spacing: -.03em; }
+    article p:not(.kicker) { font-size: 16px; line-height: 1.55; }
+    article img { display: block; width: 100%; height: auto; margin: 16px 0; border: 1px solid #0a0a0a; }
+    .byline { border-top: 1px solid #0a0a0a; padding-top: 10px; font: 11px ui-monospace, monospace; }
+    button { margin-top: 24px; padding: 12px 18px; border: 1px solid #0a0a0a; border-radius: 0; background: #ff5500; color: #0a0a0a; font: bold 12px ui-monospace, monospace; cursor: pointer; }
+    button:focus-visible { outline: 2px solid #0a0a0a; outline-offset: 3px; }
+    .disclaimer { max-width: 700px; margin-top: 28px; font: 11px/1.5 ui-monospace, monospace; }
+    @media (max-width: 700px) { .feed { grid-template-columns: 1fr; } article:nth-child(3) { grid-column: auto; } .masthead { display: block; } .masthead p { margin-top: 14px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topline"><span>LOCAL TEST PAGE</span><span>VERIBAR // DEMO</span></div>
+    <div class="masthead"><h1>Demo<span class="accent">Desk.</span></h1><p>A controlled page for checking the VeriBar Chrome extension with sample article text and media.</p></div>
+  </header>
+  <main>
+    <div class="intro"><strong>THE FEED / 01</strong><span>SCROLL TO SCAN</span></div>
+    <div class="feed" id="feed">
+      <article>
+        <p class="kicker">CITY / PLANNING</p>
+        <h2>Residents review a new neighborhood bus route</h2>
+        <p>Residents gathered at the town hall to discuss a proposed change to the local bus route. The committee presented maps, expected travel times, and a draft budget for the first year of operation. Several speakers asked how the plan would affect the morning commute.</p>
+        <p>The discussion also covered wheelchair access and the location of evening stops. Staff said they would review these details before the council votes at its next public meeting. A written summary will be posted for residents who could not attend.</p>
+        <div class="byline">SAMPLE ARTICLE · 25 OCT 2026</div>
+      </article>
+      <article>
+        <p class="kicker">DESIGN / PUBLIC SPACE</p>
+        <h2>Library opens a shared workshop for local makers</h2>
+        <img src="media.svg" alt="Abstract orange and black illustration of a workshop">
+        <p>A public library has opened a small workshop where visitors can borrow tools and take introductory classes. The first sessions focus on repairing household objects, printing simple labels, and learning basic electronics with staff supervision.</p>
+        <p>Organizers say the room will operate on a reservation system during its first month. They plan to collect feedback from visitors before changing the schedule or adding more equipment. All of the material on this page is sample content for a browser extension demonstration.</p>
+        <div class="byline">SAMPLE ARTICLE · 25 OCT 2026</div>
+      </article>
+    </div>
+    <button id="load-more" type="button">LOAD NEW ARTICLE ↗</button>
+    <p class="disclaimer">Demo content only. VeriBar’s text score is a GPT-2 detector estimate, not proof of authorship. The image is intentionally shown as not analyzed.</p>
+  </main>
+  <script>
+    document.getElementById('load-more').addEventListener('click', () => {
+      const article = document.createElement('article');
+      article.innerHTML = '<p class="kicker">COMMUNITY / LEARNING</p><h2>Students map trees around their school</h2><p>A group of students spent the afternoon cataloging trees along the streets near their school. They recorded each location, estimated the canopy width, and compared their notes with a public map. Teachers said the exercise connected classroom work to places students pass every day.</p><p>The group will return next week to check uncertain entries and share its findings with the neighborhood association. The map is a teaching project, and the article is sample text created for this VeriBar product demonstration.</p><div class="byline">NEW SAMPLE ARTICLE · ADDED LIVE</div>';
+      document.getElementById('feed').append(article);
+      document.getElementById('load-more').disabled = true;
+      document.getElementById('load-more').textContent = 'ARTICLE ADDED TO FEED';
+      article.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  </script>
+</body>
+</html>

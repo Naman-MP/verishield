@@ -1,0 +1,16 @@
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { width: 310px; margin: 0; background: #fff; color: #0a0a0a; font: 11px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+header { display: flex; justify-content: space-between; padding: 15px; background: #0a0a0a; color: #fff; font-size: 17px; font-weight: 800; letter-spacing: .08em; }
+header .mark { color: #ff5500; font-size: 10px; align-self: center; }
+main { padding: 15px; }
+.eyebrow { margin: 0 0 15px; color: #ff5500; font-weight: 800; letter-spacing: .12em; }
+.switch-row, .stat { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #0a0a0a; padding: 10px 0; }
+.switch-row { font-weight: 800; }
+.switch-row input { width: 17px; height: 17px; margin: 0; accent-color: #ff5500; }
+.stat strong { font-size: 18px; }
+button { display: block; width: 100%; margin-top: 12px; padding: 11px; border: 1px solid #0a0a0a; border-radius: 0; background: #ff5500; color: #0a0a0a; font: inherit; font-weight: 800; cursor: pointer; }
+button:disabled { background: #fff; cursor: not-allowed; }
+button:focus-visible, input:focus-visible { outline: 2px solid #ff5500; outline-offset: 2px; }
+#status { min-height: 15px; margin: 12px 0 0; }
+footer { border-top: 1px solid #0a0a0a; padding: 11px 15px; }
