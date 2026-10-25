@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>VeriBar Demo Desk</title>
+  <title>VeriShield Demo Desk</title>
   <style>
     :root { color-scheme: light; }
     * { box-sizing: border-box; }
@@ -34,8 +34,8 @@
 </head>
 <body>
   <header>
-    <div class="topline"><span>LOCAL TEST PAGE</span><span>VERIBAR // DEMO</span></div>
-    <div class="masthead"><h1>Demo<span class="accent">Desk.</span></h1><p>A controlled page for checking the VeriBar Chrome extension with sample article text and media.</p></div>
+    <div class="topline"><span>LOCAL TEST PAGE</span><span>VERISHIELD // DEMO</span></div>
+    <div class="masthead"><h1>Demo<span class="accent">Desk.</span></h1><p>A controlled page for checking the VeriShield Chrome extension with sample article text and media.</p></div>
   </header>
   <main>
     <div class="intro"><strong>THE FEED / 01</strong><span>SCROLL TO SCAN</span></div>
@@ -57,12 +57,12 @@
       </article>
     </div>
     <button id="load-more" type="button">LOAD NEW ARTICLE ↗</button>
-    <p class="disclaimer">Demo content only. VeriBar’s text score is a GPT-2 detector estimate, not proof of authorship. The image is intentionally shown as not analyzed.</p>
+    <p class="disclaimer">Demo content only. VeriShield’s text score is a GPT-2 detector estimate, not proof of authorship. The image is intentionally shown as not analyzed.</p>
   </main>
   <script>
     document.getElementById('load-more').addEventListener('click', () => {
       const article = document.createElement('article');
-      article.innerHTML = '<p class="kicker">COMMUNITY / LEARNING</p><h2>Students map trees around their school</h2><p>A group of students spent the afternoon cataloging trees along the streets near their school. They recorded each location, estimated the canopy width, and compared their notes with a public map. Teachers said the exercise connected classroom work to places students pass every day.</p><p>The group will return next week to check uncertain entries and share its findings with the neighborhood association. The map is a teaching project, and the article is sample text created for this VeriBar product demonstration.</p><div class="byline">NEW SAMPLE ARTICLE · ADDED LIVE</div>';
+      article.innerHTML = '<p class="kicker">COMMUNITY / LEARNING</p><h2>Students map trees around their school</h2><p>A group of students spent the afternoon cataloging trees along the streets near their school. They recorded each location, estimated the canopy width, and compared their notes with a public map. Teachers said the exercise connected classroom work to places students pass every day.</p><p>The group will return next week to check uncertain entries and share its findings with the neighborhood association. The map is a teaching project, and the article is sample text created for this VeriShield product demonstration.</p><div class="byline">NEW SAMPLE ARTICLE · ADDED LIVE</div>';
       document.getElementById('feed').append(article);
       document.getElementById('load-more').disabled = true;
       document.getElementById('load-more').textContent = 'ARTICLE ADDED TO FEED';

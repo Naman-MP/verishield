@@ -1,7 +1,7 @@
 const ENDPOINT = "http://127.0.0.1:8001/verify";
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message?.type !== "VERIBAR_VERIFY") return false;
+  if (message?.type !== "VERISHIELD_VERIFY") return false;
   if (!sender.tab || typeof message.html !== "string" || message.html.length > 30000) {
     sendResponse({ ok: false, error: "Invalid analysis request" });
     return false;

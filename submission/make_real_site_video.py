@@ -15,19 +15,19 @@ SOURCES = {
     "ap": Image.open(ROOT / "real-site-frames" / "02-ap-news-37.jpg").convert("RGB"),
     "ap_ai": Image.open(ROOT / "real-site-frames" / "03-ap-ai-news-100.jpg").convert("RGB"),
 }
-OUTPUT = ROOT / "veribar-real-site-walkthrough.mp4"
+OUTPUT = ROOT / "verishield-real-site-walkthrough.mp4"
 FPS = 12
 WIDTH, HEIGHT = 1280, 720
 FRAMES = [
-    (5, None, None, "VERIBAR: THREE REAL RESULTS", "Edited Chrome captures · Wikipedia + AP News"),
-    (14, "wiki", (0, 80, 2400, 1430), "SCENARIO 1 / WIKIPEDIA", "Photosynthesis text block: 0% GPT-2-like."),
-    (10, "wiki", (340, 360, 1900, 1220), "0% TEXT SIGNAL", "The image beside the text is marked NOT ANALYZED."),
-    (15, "ap", (0, 0, 2560, 1430), "SCENARIO 2 / AP NEWS", "Data-center story: 37% on a 40-word photo-area block."),
-    (10, "ap", (60, 590, 1760, 940), "37% TEXT SIGNAL", "The full article body separately scored 0%."),
-    (15, "ap_ai", (0, 0, 2560, 1430), "SCENARIO 3 / AP NEWS", "OpenAI story: 100% on an 84-word photo-area block."),
-    (10, "ap_ai", (70, 580, 1760, 900), "100% TEXT SIGNAL", "The page index also includes a separate 0% text item."),
-    (12, "ap_ai", (0, 0, 2560, 1430), "READ THE SCORE CAREFULLY", "GPT-2-like is a model estimate, not proof of authorship."),
-    (6, None, None, "VERIBAR / REAL-SITE TEST", "0% · 37% · 100% on three observed text blocks"),
+    (5, None, None, "VERISHIELD: THREE REAL RESULTS", "Edited Chrome captures · Wikipedia + AP News"),
+    (14, "wiki", (0, 174, 2174, 1397), "SCENARIO 1 / WIKIPEDIA", "Photosynthesis text block: 0% GPT-2-like."),
+    (10, "wiki", (0, 400, 1740, 1380), "0% TEXT SIGNAL", "The image beside the text is marked NOT ANALYZED."),
+    (15, "ap", (0, 231, 2174, 1454), "SCENARIO 2 / AP NEWS", "Data-center story: 37% on a 40-word photo-area block."),
+    (10, "ap", (70, 650, 1430, 1415), "37% TEXT SIGNAL", "The full article body separately scored 0%."),
+    (15, "ap_ai", (0, 230, 2174, 1453), "SCENARIO 3 / AP NEWS", "OpenAI story: 100% on an 84-word photo-area block."),
+    (10, "ap_ai", (70, 690, 1430, 1454), "100% TEXT SIGNAL", "The page index also includes a separate 0% text item."),
+    (12, "ap_ai", (0, 230, 2174, 1453), "READ THE SCORE CAREFULLY", "GPT-2-like is a model estimate, not proof of authorship."),
+    (6, None, None, "VERISHIELD / REAL-SITE TEST", "0% · 37% · 100% on three observed text blocks"),
 ]
 
 

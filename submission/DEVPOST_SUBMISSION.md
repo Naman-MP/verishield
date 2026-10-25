@@ -1,10 +1,10 @@
-# VeriBar (VeriShield) — NextSpark Hacks submission draft
+# VeriShield — NextSpark Hacks submission draft
 
 NextSpark Hacks requires a public source repository, a 1–3 minute explanatory demo, at least one screenshot, and disclosure of technologies, resources, and AI assistance. Check your Devpost form for any additional fields. The published deadline is **October 26, 2026 at 10:00 pm CDT** (October 27 at 8:30 am IST). Confirm the current deadline on the hackathon page before submitting.
 
 ## Project name
 
-VeriBar (VeriShield)
+VeriShield
 
 ## Tagline
 
@@ -18,15 +18,15 @@ It is hard to tell what an AI-content score means when a tool shows only a numbe
 
 ### What it does
 
-VeriBar scans article-like text on web pages and adds a small expandable bar. The bar shows a GPT-2-like score, the method, model confidence, and word count. A corner page index and extension popup summarize the scanned items. New content added to a page can be picked up as it appears. Images, audio, and video are marked **Not analyzed** rather than given an unsupported score.
+VeriShield scans article-like text on web pages and adds a small expandable bar. The bar shows a GPT-2-like score, the method, model confidence, and word count. A corner page index and extension popup summarize the scanned items. New content added to a page can be picked up as it appears. Images, audio, and video are marked **Not analyzed** rather than given an unsupported score.
 
 ### How we built it
 
-The Chrome Manifest V3 extension finds readable text and sends it to a FastAPI service running on the user's own computer. The service extracts text from HTML and runs the `openai-community/roberta-base-openai-detector` model with PyTorch and Hugging Face Transformers. If the service cannot respond, the extension displays a separately labeled writing-pattern estimate. The demo includes a local sample page and a 95-second screen recording.
+The Chrome Manifest V3 extension finds readable text and sends it to a FastAPI service running on the user's own computer. The service extracts text from HTML and runs the `openai-community/roberta-base-openai-detector` model with PyTorch and Hugging Face Transformers. If the service cannot respond, the extension displays a separately labeled writing-pattern estimate. The demo includes a local sample page and a 97-second real-site walkthrough.
 
 ### Who it helps
 
-Readers who want context about a text-detector estimate while reading an article, without sending the article to a hosted VeriBar service.
+Readers who want context about a text-detector estimate while reading an article, without sending the article to a hosted VeriShield service.
 
 ### Challenges
 
@@ -48,9 +48,8 @@ Chrome Extension, Manifest V3, JavaScript, Python, FastAPI, PyTorch, Hugging Fac
 
 ## Links to add before submission
 
-- **Code / Try it out:** Public repository URL containing the project source and setup steps in `README.md`. The `veribar-source.zip` bundle is ready to upload if needed, but NextSpark specifically requires a public repository.
-- **Demo video:** Upload `submission/veribar-devpost-demo.mp4` to YouTube or Vimeo, then paste its judge-accessible link into Devpost. It is 95 seconds long and has captions explaining the features.
-- **Real-site walkthrough:** `submission/veribar-real-site-walkthrough.mp4` is a 97-second captioned video built from actual Chrome captures of VeriBar on three page results: Wikipedia's [Photosynthesis](https://en.wikipedia.org/wiki/Photosynthesis) article shows 0% GPT-2-like on one text block; an [AP News data-center report](https://apnews.com/article/data-centers-artificial-intelligence-nimby-tech-b4b0544036989fc33820e8306593aff9) shows 37% on a 40-word text block associated with the lead photo, while its article body separately scored 0%; and an [AP News report about an OpenAI agent](https://apnews.com/article/sam-altman-openai-conference-dots-agent-77b6b8888145869206996d7509d24256) shows 100% on an 84-word photo-area text block. These are model estimates on specific blocks, not claims about article authorship. This is an edited walkthrough of captured screens, not a continuous live recording. Wikipedia page content is available under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/); credit the article and its contributors if publishing the video. Credit AP News and link both reports as well.
-- **Gallery thumbnail:** Upload `submission/veribar-thumbnail.png`.
+- **Code / Try it out:** Public repository URL containing the project source and setup steps in `README.md`. The `verishield-source.zip` bundle is ready to upload if needed, but NextSpark specifically requires a public repository.
+- **Demo video:** Upload `submission/verishield-real-site-walkthrough.mp4` to YouTube or Vimeo, then paste its judge-accessible link into Devpost. It is a 97-second captioned video built from actual Chrome captures of VeriShield on three page results: Wikipedia's [Photosynthesis](https://en.wikipedia.org/wiki/Photosynthesis) article shows 0% GPT-2-like on one text block; an [AP News data-center report](https://apnews.com/article/data-centers-artificial-intelligence-nimby-tech-b4b0544036989fc33820e8306593aff9) shows 37% on a 40-word text block associated with the lead photo, while its article body separately scored 0%; and an [AP News report about an OpenAI agent](https://apnews.com/article/sam-altman-openai-conference-dots-agent-77b6b8888145869206996d7509d24256) shows 100% on an 84-word photo-area text block. These are model estimates on specific blocks, not claims about article authorship. This is an edited walkthrough of captured screens, not a continuous live recording. Wikipedia page content is available under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/); credit the article and its contributors if publishing the video. Credit AP News and link both reports as well.
+- **Gallery thumbnail:** Upload `submission/verishield-thumbnail.png`.
 
 The local `127.0.0.1` URLs are only available on the computer running the project; they are not public demo links. Judges need to install the extension and run the backend as described in `README.md`.

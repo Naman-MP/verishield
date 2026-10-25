@@ -8,7 +8,7 @@ client = TestClient(server.app)
 
 def test_extract_text_ignores_page_chrome_and_injected_ui():
     html = """<article><nav>Navigation links must disappear</nav>
-    <div class='veribar-root'>Injected score must disappear</div>
+    <div class='verishield-root'>Injected score must disappear</div>
     <h1>A useful article about an actual event</h1>
     <p>This paragraph contains the information a reader came here to find.</p>
     <script>secret tracking code</script></article>"""

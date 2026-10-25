@@ -1,6 +1,6 @@
 (() => {
-  if (window.__veribarLoaded) return;
-  window.__veribarLoaded = true;
+  if (window.__verishieldLoaded) return;
+  window.__verishieldLoaded = true;
 
   const TEXT_SELECTORS = "article, [data-testid='tweetText'], [itemprop='articleBody'], .post-content, .entry-content, .article-body, .articleBody, .story-content, .storyBody";
   const MAX_CONCURRENT = 3;
@@ -16,12 +16,12 @@
   const words = (text) => (text.trim().match(/\S+/g) || []).length;
   function cleanClone(node) {
     const clone = node.cloneNode(true);
-    clone.querySelectorAll(".veribar-root, .veribar-hud, script, style, nav, aside, footer, header, form, button, svg, noscript")
+    clone.querySelectorAll(".verishield-root, .verishield-hud, script, style, nav, aside, footer, header, form, button, svg, noscript")
       .forEach((unwanted) => unwanted.remove());
     return clone;
   }
   const visible = (node) => {
-    if (!node.isConnected || node.closest("nav, aside, footer, header, .veribar-root, .veribar-hud")) return false;
+    if (!node.isConnected || node.closest("nav, aside, footer, header, .verishield-root, .verishield-hud")) return false;
     const style = getComputedStyle(node);
     const rect = node.getBoundingClientRect();
     return style.display !== "none" && style.visibility !== "hidden" &&
@@ -36,26 +36,26 @@
   }
 
   function createBar(node, kind) {
-    const root = make("div", "veribar-root");
+    const root = make("div", "verishield-root");
     root.dataset.expanded = "false";
-    const button = make("button", "veribar-toggle");
+    const button = make("button", "verishield-toggle");
     button.type = "button";
     button.setAttribute("aria-expanded", "false");
-    const brand = make("span", "veribar-brand", `VERIBAR / ${kind}`);
-    const result = make("span", "veribar-result", kind === "MEDIA" ? "NOT ANALYZED ▾" : "ANALYZING… ▾");
+    const brand = make("span", "verishield-brand", `VERISHIELD / ${kind}`);
+    const result = make("span", "verishield-result", kind === "MEDIA" ? "NOT ANALYZED ▾" : "ANALYZING… ▾");
     button.append(brand, result);
-    const meter = make("div", "veribar-meter");
+    const meter = make("div", "verishield-meter");
     const fill = make("span", "");
     meter.append(fill);
-    const detail = make("div", "veribar-detail");
-    const grid = make("div", "veribar-grid");
+    const detail = make("div", "verishield-detail");
+    const grid = make("div", "verishield-grid");
     const cells = ["METHOD", "CONFIDENCE", "WORDS"].map((label) => {
-      const cell = make("div", "veribar-cell");
+      const cell = make("div", "verishield-cell");
       cell.append(make("b", "", label), make("span", "", "—"));
       grid.append(cell);
       return cell.lastChild;
     });
-    const note = make("div", "veribar-note", kind === "MEDIA"
+    const note = make("div", "verishield-note", kind === "MEDIA"
       ? "Audio, video, image manipulation and C2PA origin are not checked in this version."
       : "Analyzing text with the local API…");
     detail.append(grid, note);
@@ -104,7 +104,7 @@
         finished = true;
         reject(new Error("Local analysis timed out"));
       }, 25000);
-      chrome.runtime.sendMessage({ type: "VERIBAR_VERIFY", html }, (reply) => {
+      chrome.runtime.sendMessage({ type: "VERISHIELD_VERIFY", html }, (reply) => {
         if (finished) return;
         finished = true;
         clearTimeout(timeout);
@@ -242,14 +242,14 @@
   function updateHud() {
     if (!active) return;
     if (!hud) {
-      hud = make("div", "veribar-hud");
+      hud = make("div", "verishield-hud");
       document.body.append(hud);
     }
     const model = [...records.values()].map((record) => record.data).filter((data) => data?.method === "GPT-2 MODEL");
     const patterns = [...records.values()].map((record) => record.data).filter((data) => data?.method === "LOCAL PATTERN");
     const average = model.length ? Math.round(model.reduce((sum, item) => sum + item.score, 0) / model.length) : null;
     hud.replaceChildren(
-      make("strong", "", "VERIBAR // PAGE INDEX"),
+      make("strong", "", "VERISHIELD // PAGE INDEX"),
       make("span", "", model.length ? `${average}% GPT-2-like · ${model.length} text items` : `${patterns.length} local pattern results · no model scores`)
     );
   }
@@ -275,8 +275,8 @@
   }
 
   chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
-    if (message?.type === "VERIBAR_SUMMARY") sendResponse(summary());
-    if (message?.type === "VERIBAR_RESCAN") {
+    if (message?.type === "VERISHIELD_SUMMARY") sendResponse(summary());
+    if (message?.type === "VERISHIELD_RESCAN") {
       clearResults();
       if (active) scan();
       sendResponse(summary());
@@ -284,25 +284,25 @@
   });
 
   chrome.storage.onChanged.addListener((changes) => {
-    if (!changes.veribarActive) return;
-    active = changes.veribarActive.newValue !== false;
+    if (!changes.verishieldActive) return;
+    active = changes.verishieldActive.newValue !== false;
     if (active) scan();
     else clearResults();
   });
 
   const observer = new MutationObserver((mutations) => {
     if (!active || !mutations.some((mutation) => {
-      if (mutation.target.closest?.(".veribar-root, .veribar-hud")) return false;
+      if (mutation.target.closest?.(".verishield-root, .verishield-hud")) return false;
       return [...mutation.addedNodes].some((node) => node.nodeType === Node.ELEMENT_NODE &&
-        !node.classList?.contains("veribar-root") && !node.classList?.contains("veribar-hud"));
+        !node.classList?.contains("verishield-root") && !node.classList?.contains("verishield-hud"));
     })) return;
     scheduleScan();
   });
   observer.observe(document.documentElement, { childList: true, subtree: true });
   window.addEventListener("scroll", scheduleScan, { passive: true });
   window.addEventListener("load", scheduleScan);
-  chrome.storage.local.get({ veribarActive: true }, ({ veribarActive }) => {
-    active = veribarActive;
+  chrome.storage.local.get({ verishieldActive: true }, ({ verishieldActive }) => {
+    active = verishieldActive;
     if (active) scan();
   });
 })();

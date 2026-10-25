@@ -1,4 +1,4 @@
-"""Local text analysis API for the VeriBar Chrome extension."""
+"""Local text analysis API for the VeriShield Chrome extension."""
 
 from __future__ import annotations
 
@@ -16,7 +16,7 @@ MAX_TEXT_CHARS = 12_000
 MIN_WORDS = 30
 _inference_lock = Lock()
 
-app = FastAPI(title="VeriBar Local API", version="0.1.0")
+app = FastAPI(title="VeriShield Local API", version="0.1.0")
 
 
 class VerifyRequest(BaseModel):
@@ -36,7 +36,7 @@ class VerifyResponse(BaseModel):
 def extract_text_from_elements(raw_html: str) -> str:
     """Keep article-like copy and discard page chrome and executable content."""
     soup = BeautifulSoup(raw_html, "html.parser")
-    for tag in soup.select(".veribar-root, .veribar-hud"):
+    for tag in soup.select(".verishield-root, .verishield-hud"):
         tag.decompose()
     for tag in soup.find_all(
         ["script", "style", "nav", "aside", "footer", "header", "form", "button", "svg", "noscript"]

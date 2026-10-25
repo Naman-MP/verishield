@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "VeriBar",
+  "name": "VeriShield",
   "version": "0.1.0",
   "description": "Shows a local GPT-2 text detector estimate beside web content.",
   "permissions": ["storage", "tabs"],
@@ -12,5 +12,5 @@
     "css": ["content.css"],
     "run_at": "document_idle"
   }],
-  "action": { "default_title": "VeriBar", "default_popup": "popup.html" }
+  "action": { "default_title": "VeriShield", "default_popup": "popup.html" }
 }
