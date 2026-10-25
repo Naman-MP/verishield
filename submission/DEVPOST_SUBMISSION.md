@@ -50,6 +50,7 @@ Chrome Extension, Manifest V3, JavaScript, Python, FastAPI, PyTorch, Hugging Fac
 
 - **Code / Try it out:** Public repository URL containing the project source and setup steps in `README.md`. The `veribar-source.zip` bundle is ready to upload if needed, but NextSpark specifically requires a public repository.
 - **Demo video:** Upload `submission/veribar-devpost-demo.mp4` to YouTube or Vimeo, then paste its judge-accessible link into Devpost. It is 95 seconds long and has captions explaining the features.
+- **Real-site walkthrough:** `submission/veribar-real-site-walkthrough.mp4` is a 70-second captioned video built from an actual Chrome capture of VeriBar on Wikipedia's [Photosynthesis](https://en.wikipedia.org/wiki/Photosynthesis) article. It shows the returned 0% GPT-2-like text estimate, the media's Not Analyzed status, and the page index. This is an edited walkthrough of a captured screen, not a continuous live recording. Wikipedia page content is available under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/); credit the article and its contributors if publishing the video.
 - **Gallery thumbnail:** Upload `submission/veribar-thumbnail.png`.
 
 The local `127.0.0.1` URLs are only available on the computer running the project; they are not public demo links. Judges need to install the extension and run the backend as described in `README.md`.
